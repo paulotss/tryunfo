@@ -34,6 +34,7 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      hasTrunfo: sta.hasTrunfo || sta.cardTrunfo,
       cards: sta.cards.concat([{
         cardName: sta.cardName,
         cardDescription: sta.cardDescription,
@@ -49,7 +50,14 @@ class App extends React.Component {
 
   onInputChange({ target }) {
     const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    let value;
+    if (target.type === 'checkbox') {
+      value = target.checked;
+    } else if (target.type === 'number') {
+      value = Number(target.value);
+    } else {
+      value = target.value;
+    }
     this.setState({ [name]: value });
     this.formValidation();
   }
@@ -91,6 +99,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
 
@@ -111,6 +120,7 @@ class App extends React.Component {
                 cardImage={ cardImage }
                 cardRare={ cardRare }
                 cardTrunfo={ cardTrunfo }
+                hasTrunfo={ hasTrunfo }
                 isSaveButtonDisabled={ isSaveButtonDisabled }
                 onInputChange={ this.onInputChange }
                 onSaveButtonClick={ this.onSaveButtonClick }
