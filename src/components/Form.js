@@ -1,117 +1,116 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
     const {
-      cardName, //uma string;
-      cardDescription, //uma string;
-      cardAttr1, //uma string;
-      cardAttr2, //uma string;
-      cardAttr3, //uma string;
-      cardImage, //uma string;
-      cardRare, //uma string;
-      cardTrunfo, //um boolean;
-      hasTrunfo, //um boolean;
-      isSaveButtonDisabled, //um boolean;
-      onInputChange, //uma callback;
-      onSaveButtonClick, //uma callback;
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick,
     } = this.props;
 
     return (
       <form>
         <fieldset>
           <div>
-            <label htmlFor="nome">
+            <label htmlFor="cardName">
               Nome:
               <br />
               <input
                 type="text"
-                id="nome"
-                name="nome"
+                id="cardName"
+                name="cardName"
                 data-testid="name-input"
-                value={cardName}
-                onChange={onInputChange}
+                value={ cardName }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="descricao">
+            <label htmlFor="cardDescription">
               Descrição:
               <br />
               <textarea
-                id="descricao"
-                name="descricao"
+                id="cardDescription"
+                name="cardDescription"
                 data-testid="description-input"
-                value={cardDescription}
-                onChange={onInputChange}
+                value={ cardDescription }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="atributo1">
+            <label htmlFor="cardAttr1">
               Atributo 1:
               <br />
               <input
                 type="number"
-                id="atributo1"
-                name="atributo1"
+                id="cardAttr1"
+                name="cardAttr1"
                 data-testid="attr1-input"
-                value={cardAttr1}
-                onChange={onInputChange}
+                value={ cardAttr1 }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="atributo2">
+            <label htmlFor="cardAttr2">
               Atributo 2:
               <br />
               <input
                 type="number"
-                id="atributo2"
-                name="atributo2"
+                id="cardAttr2"
+                name="cardAttr2"
                 data-testid="attr2-input"
-                value={cardAttr2}
-                onChange={onInputChange}
+                value={ cardAttr2 }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="atributo3">
+            <label htmlFor="cardAttr3">
               Atributo 3:
               <br />
               <input
                 type="number"
-                id="atributo3"
-                name="atributo3"
+                id="cardAttr3"
+                name="cardAttr3"
                 data-testid="attr3-input"
-                value={cardAttr3}
-                onChange={onInputChange}
+                value={ cardAttr3 }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="imagem">
-              Imagem:
-              <br />
+            <label htmlFor="cardImage">
               <input
                 type="text"
-                id="imagem"
-                name="imagem"
+                id="cardImage"
+                name="cardImage"
                 data-testid="image-input"
-                value={cardImage}
-                onChange={onInputChange}
+                value={ cardImage }
+                onChange={ onInputChange }
               />
             </label>
           </div>
           <div>
-            <label htmlFor="raridade">
+            <label htmlFor="cardRare">
               Raridade:
               <select
-                id="raridade"
-                name="raridade"
+                id="cardRare"
+                name="cardRare"
                 data-testid="rare-input"
-                value={cardRare}
-                onChange={onInputChange}
+                value={ cardRare }
+                onChange={ onInputChange }
               >
                 <option value="normal">normal</option>
                 <option value="raro">raro</option>
@@ -120,15 +119,15 @@ class Form extends React.Component {
             </label>
           </div>
           <div>
-            <label htmlFor="strunfo">
+            <label htmlFor="cardTrunfo">
               Super Trunfo:
               <input
                 type="checkbox"
-                id="strunfo"
-                name="strunfo"
+                id="cardTrunfo"
+                name="cardTrunfo"
                 data-testid="trunfo-input"
-                checked={cardTrunfo}
-                onChange={onInputChange}
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
               />
             </label>
           </div>
@@ -136,8 +135,8 @@ class Form extends React.Component {
             <button
               type="button"
               data-testid="save-button"
-              disabled={isSaveButtonDisabled}
-              onClick={onSaveButtonClick}
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
             >
               Salvar
             </button>
@@ -147,5 +146,20 @@ class Form extends React.Component {
     );
   }
 }
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
 
 export default Form;
