@@ -15,3 +15,13 @@ code {
 fieldset div {
   padding:10px;
 }
+
+.create {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.create aside {
+  min-width: 250px;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './components/Card';
 import Form from './components/Form';
 import './index.css';
 
@@ -9,9 +10,16 @@ class App extends React.Component {
         <header>
           <h1>Tryunfo</h1>
         </header>
-        <section>
-          <Form />
-        </section>
+        <main>
+          <section className="create">
+            <article>
+              <Form />
+            </article>
+            <aside className="carPre">
+              <Card />
+            </aside>
+          </section>
+        </main>
       </>
     );
   }
