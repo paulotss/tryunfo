@@ -8,18 +8,43 @@ class App extends React.Component {
     super();
     this.onInputChange = this.onInputChange.bind(this);
     this.formValidation = this.formValidation.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      cards: [],
     };
+  }
+
+  onSaveButtonClick() {
+    this.setState((sta) => ({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+      cards: sta.cards.concat([{
+        cardName: sta.cardName,
+        cardDescription: sta.cardDescription,
+        cardAttr1: sta.cardAttr1,
+        cardAttr2: sta.cardAttr2,
+        cardAttr3: sta.cardAttr3,
+        cardImage: sta.cardImage,
+        cardRare: sta.cardRare,
+        cardTrunfo: sta.cardTrunfo,
+      }]),
+    }));
   }
 
   onInputChange({ target }) {
@@ -88,6 +113,7 @@ class App extends React.Component {
                 cardTrunfo={ cardTrunfo }
                 isSaveButtonDisabled={ isSaveButtonDisabled }
                 onInputChange={ this.onInputChange }
+                onSaveButtonClick={ this.onSaveButtonClick }
               />
             </article>
             <aside className="carPre">

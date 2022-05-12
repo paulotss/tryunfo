@@ -53,7 +53,7 @@ class Form extends React.Component {
               Atributo 1:
               <br />
               <input
-                type="string"
+                type="number"
                 id="cardAttr1"
                 name="cardAttr1"
                 data-testid="attr1-input"
@@ -67,7 +67,7 @@ class Form extends React.Component {
               Atributo 2:
               <br />
               <input
-                type="string"
+                type="number"
                 id="cardAttr2"
                 name="cardAttr2"
                 data-testid="attr2-input"
@@ -81,7 +81,7 @@ class Form extends React.Component {
               Atributo 3:
               <br />
               <input
-                type="string"
+                type="number"
                 id="cardAttr3"
                 name="cardAttr3"
                 data-testid="attr3-input"
@@ -150,9 +150,9 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
