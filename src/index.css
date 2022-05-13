@@ -12,8 +12,9 @@ code {
     monospace;
 }
 
-fieldset div {
-  padding:10px;
+fieldset label {
+  display: block;
+  margin-bottom:20px;
 }
 
 .create {
@@ -22,6 +23,49 @@ fieldset div {
   justify-content: center;
 }
 
+.create article {
+  min-width: 250px;
+  width: 50%;
+}
+
 .create aside {
   min-width: 250px;
+  width: 50%;
+}
+
+.cardContainer {
+  margin:20px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.cardContainer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.trunfo {
+  background-color: white;
+  color: green;
+  padding: 10px;
+  font-weight: 900;
+}
+
+.show {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.cardBD {
+  width: 300px;
+  text-align: center;
+  border: 1px solid green;
+}
+
+.cardBD img {
+  width: 150px;
 }

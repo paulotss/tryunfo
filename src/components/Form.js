@@ -21,87 +21,77 @@ class Form extends React.Component {
     return (
       <form>
         <fieldset>
-          <div>
-            <label htmlFor="cardName">
-              Nome:
-              <br />
-              <input
-                type="text"
-                id="cardName"
-                name="cardName"
-                data-testid="name-input"
-                value={ cardName }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="cardDescription">
-              Descrição:
-              <br />
-              <textarea
-                id="cardDescription"
-                name="cardDescription"
-                data-testid="description-input"
-                value={ cardDescription }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="cardAttr1">
-              Atributo 1:
-              <br />
-              <input
-                type="number"
-                id="cardAttr1"
-                name="cardAttr1"
-                data-testid="attr1-input"
-                value={ cardAttr1 }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="cardAttr2">
-              Atributo 2:
-              <br />
-              <input
-                type="number"
-                id="cardAttr2"
-                name="cardAttr2"
-                data-testid="attr2-input"
-                value={ cardAttr2 }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="cardAttr3">
-              Atributo 3:
-              <br />
-              <input
-                type="number"
-                id="cardAttr3"
-                name="cardAttr3"
-                data-testid="attr3-input"
-                value={ cardAttr3 }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="cardImage">
-              <input
-                type="text"
-                id="cardImage"
-                name="cardImage"
-                data-testid="image-input"
-                value={ cardImage }
-                onChange={ onInputChange }
-              />
-            </label>
-          </div>
+          <label htmlFor="cardName">
+            Nome:
+            <br />
+            <input
+              type="text"
+              id="cardName"
+              name="cardName"
+              data-testid="name-input"
+              value={ cardName }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="cardDescription">
+            Descrição:
+            <br />
+            <textarea
+              id="cardDescription"
+              name="cardDescription"
+              data-testid="description-input"
+              value={ cardDescription }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="cardAttr1">
+            Atributo 1:
+            <br />
+            <input
+              type="number"
+              id="cardAttr1"
+              name="cardAttr1"
+              data-testid="attr1-input"
+              value={ cardAttr1 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="cardAttr2">
+            Atributo 2:
+            <br />
+            <input
+              type="number"
+              id="cardAttr2"
+              name="cardAttr2"
+              data-testid="attr2-input"
+              value={ cardAttr2 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="cardAttr3">
+            Atributo 3:
+            <br />
+            <input
+              type="number"
+              id="cardAttr3"
+              name="cardAttr3"
+              data-testid="attr3-input"
+              value={ cardAttr3 }
+              onChange={ onInputChange }
+            />
+          </label>
+          <label htmlFor="cardImage">
+            Imagem:
+            <br />
+            <input
+              type="text"
+              id="cardImage"
+              name="cardImage"
+              data-testid="image-input"
+              value={ cardImage }
+              onChange={ onInputChange }
+            />
+          </label>
           <label htmlFor="cardRare">
             Raridade:
             <select
@@ -116,31 +106,27 @@ class Form extends React.Component {
               <option value="muito raro">muito raro</option>
             </select>
           </label>
-          <div>
-            <label htmlFor="cardTrunfo">
-              Super Trunfo:
-              { hasTrunfo ? <span> Você já tem um Super Trunfo em seu baralho</span>
-                : (
-                  <input
-                    type="checkbox"
-                    id="cardTrunfo"
-                    name="cardTrunfo"
-                    data-testid="trunfo-input"
-                    checked={ cardTrunfo }
-                    onChange={ onInputChange }
-                  />) }
-            </label>
-          </div>
-          <div>
-            <button
-              type="button"
-              data-testid="save-button"
-              disabled={ isSaveButtonDisabled }
-              onClick={ onSaveButtonClick }
-            >
-              Salvar
-            </button>
-          </div>
+          <label htmlFor="cardTrunfo">
+            Super Trunfo:
+            { hasTrunfo ? <span> Você já tem um Super Trunfo em seu baralho</span>
+              : (
+                <input
+                  type="checkbox"
+                  id="cardTrunfo"
+                  name="cardTrunfo"
+                  data-testid="trunfo-input"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                />) }
+          </label>
+          <button
+            type="button"
+            data-testid="save-button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
+          >
+            Salvar
+          </button>
         </fieldset>
       </form>
     );

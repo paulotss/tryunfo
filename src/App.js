@@ -10,6 +10,7 @@ class App extends React.Component {
     this.formValidation = this.formValidation.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.handleChangeSearch = this.handleChangeSearch.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -22,7 +23,19 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       cards: [],
+      search: '',
+      searchCards: [],
     };
+  }
+
+  handleChangeSearch({ target }) {
+    this.setState((sta) => {
+      const search = sta.cards.filter((card) => card.cardName.includes(target.value));
+      return ({
+        search: target.value,
+        searchCards: search,
+      });
+    });
   }
 
   handleClickDelete(idName) {
@@ -112,7 +125,11 @@ class App extends React.Component {
       hasTrunfo,
       cards,
       isSaveButtonDisabled,
+      searchCards,
+      search,
     } = this.state;
+
+    const showCards = search ? searchCards : cards;
 
     return (
       <>
@@ -150,9 +167,21 @@ class App extends React.Component {
               />
             </aside>
           </section>
+          <h1>Meu Deck</h1>
+          <label htmlFor="search">
+            Buscar:
+            <br />
+            <input
+              type="text"
+              id="search"
+              name="search"
+              onChange={ this.handleChangeSearch }
+              data-testid="name-filter"
+            />
+          </label>
           <section className="show">
-            { cards.map((card, key) => (
-              <div key={ `d${key}` }>
+            { showCards.map((card, key) => (
+              <div className="cardBD" key={ `d${key}` }>
                 <Card
                   key={ key }
                   cardName={ card.cardName }
