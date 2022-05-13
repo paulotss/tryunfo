@@ -11,6 +11,7 @@ class App extends React.Component {
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
+    this.handleChangesTrunfo = this.handleChangesTrunfo.bind(this);
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -24,9 +25,23 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cards: [],
       search: '',
-      searchRare: 'todas',
+      sRare: 'todas',
+      sTrunfo: false,
       searchCards: [],
     };
+  }
+
+  handleChangesTrunfo({ target }) {
+    this.setState((sta) => {
+      document.getElementById('sRare').disabled = target.checked;
+      document.getElementById('search').disabled = target.checked;
+      return {
+        searchCards: target.value ? sta.cards.filter((card) => card.cardTrunfo) : [],
+        search: '',
+        sRare: 'todas',
+        sTrunfo: target.checked,
+      };
+    });
   }
 
   handleChangeSearch({ target }) {
@@ -38,7 +53,7 @@ class App extends React.Component {
         sr = value;
         ss = sta.search;
       } else {
-        sr = sta.searchRare;
+        sr = sta.sRare;
         ss = value;
       }
       const search = sta.cards.filter((card) => {
@@ -106,25 +121,17 @@ class App extends React.Component {
 
   formValidation() {
     this.setState((sta) => {
-      const {
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardName,
-        cardDescription,
-        cardImage,
-      } = sta;
       let result = true;
       let attr;
       const max = 90;
       const maxSum = 210;
       if (
-        cardName && cardDescription && cardImage
-        && (Number(cardAttr1) <= max && Number(cardAttr1) >= 0)
-        && (Number(cardAttr2) <= max && Number(cardAttr2) >= 0)
-        && (Number(cardAttr3) <= max && Number(cardAttr3) >= 0)
+        sta.cardName && sta.cardDescription && sta.cardImage
+        && (Number(sta.cardAttr1) <= max && Number(sta.cardAttr1) >= 0)
+        && (Number(sta.cardAttr2) <= max && Number(sta.cardAttr2) >= 0)
+        && (Number(sta.cardAttr3) <= max && Number(sta.cardAttr3) >= 0)
       ) {
-        attr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+        attr = Number(sta.cardAttr1) + Number(sta.cardAttr2) + Number(sta.cardAttr3);
         result = attr > maxSum;
       }
       return ({ isSaveButtonDisabled: result });
@@ -132,24 +139,11 @@ class App extends React.Component {
   }
 
   render() {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      hasTrunfo,
-      cards,
-      isSaveButtonDisabled,
-      searchCards,
-      searchRare,
-      search,
-    } = this.state;
-
-    const showCards = search || searchRare !== 'todas' ? searchCards : cards;
+    const { cardName, cardDescription, cardAttr1, cardAttr2 } = this.state;
+    const { cardAttr3, cardImage, cardRare, cardTrunfo } = this.state;
+    const { hasTrunfo, cards, isSaveButtonDisabled, searchCards } = this.state;
+    const { sRare, sTrunfo, search } = this.state;
+    const showCards = search || sRare !== 'todas' || sTrunfo ? searchCards : cards;
 
     return (
       <>
@@ -190,7 +184,6 @@ class App extends React.Component {
           <h1>Meu Deck</h1>
           <label htmlFor="search">
             Nome:
-            <br />
             <input
               type="text"
               id="search"
@@ -199,12 +192,11 @@ class App extends React.Component {
               data-testid="name-filter"
             />
           </label>
-          <label htmlFor="searchRare">
+          <label htmlFor="sRare">
             Raridade:
-            <br />
             <select
-              id="searchRare"
-              name="searchRare"
+              id="sRare"
+              name="sRare"
               onChange={ this.handleChangeSearch }
               data-testid="rare-filter"
             >
@@ -213,6 +205,16 @@ class App extends React.Component {
               <option>raro</option>
               <option>muito raro</option>
             </select>
+          </label>
+          <label htmlFor="sTrunfo">
+            Super trunfo:
+            <input
+              type="checkbox"
+              id="sTrunfo"
+              name="sTrunfo"
+              data-testid="trunfo-filter"
+              onChange={ this.handleChangesTrunfo }
+            />
           </label>
           <section className="show">
             { showCards.map((card, key) => (
