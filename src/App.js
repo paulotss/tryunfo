@@ -24,15 +24,34 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cards: [],
       search: '',
+      searchRare: 'todas',
       searchCards: [],
     };
   }
 
   handleChangeSearch({ target }) {
+    const { name, value } = target;
     this.setState((sta) => {
-      const search = sta.cards.filter((card) => card.cardName.includes(target.value));
+      let sr;
+      let ss;
+      if (target.type === 'select-one') {
+        sr = value;
+        ss = sta.search;
+      } else {
+        sr = sta.searchRare;
+        ss = value;
+      }
+      const search = sta.cards.filter((card) => {
+        let result;
+        if (sr !== 'todas') {
+          result = card.cardName.includes(ss) && card.cardRare === sr;
+        } else {
+          result = card.cardName.includes(ss);
+        }
+        return result;
+      });
       return ({
-        search: target.value,
+        [name]: value,
         searchCards: search,
       });
     });
@@ -126,10 +145,11 @@ class App extends React.Component {
       cards,
       isSaveButtonDisabled,
       searchCards,
+      searchRare,
       search,
     } = this.state;
 
-    const showCards = search ? searchCards : cards;
+    const showCards = search || searchRare !== 'todas' ? searchCards : cards;
 
     return (
       <>
@@ -169,7 +189,7 @@ class App extends React.Component {
           </section>
           <h1>Meu Deck</h1>
           <label htmlFor="search">
-            Buscar:
+            Nome:
             <br />
             <input
               type="text"
@@ -178,6 +198,21 @@ class App extends React.Component {
               onChange={ this.handleChangeSearch }
               data-testid="name-filter"
             />
+          </label>
+          <label htmlFor="searchRare">
+            Raridade:
+            <br />
+            <select
+              id="searchRare"
+              name="searchRare"
+              onChange={ this.handleChangeSearch }
+              data-testid="rare-filter"
+            >
+              <option>todas</option>
+              <option>normal</option>
+              <option>raro</option>
+              <option>muito raro</option>
+            </select>
           </label>
           <section className="show">
             { showCards.map((card, key) => (
